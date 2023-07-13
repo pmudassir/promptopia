@@ -5,9 +5,7 @@ export const GET = async ({ params }) => {
     try {
         await connectToDB()
 
-        const prompts = await Prompt.find({
-            creator: params.id
-        }).populate("creator")
+        const prompts = await Prompt.findById(params.id).populate("creator")
 
         return new Response(JSON.stringify(prompts), { status: 200 })
     } catch (error) {
@@ -15,4 +13,4 @@ export const GET = async ({ params }) => {
     }
 }
 
-// params prop is used in dynamic cases here it will be users id as passed in api endpoint
+// params prop is used in dynamic cases here it will be users id as passed in api endpoint 
